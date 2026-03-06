@@ -89,6 +89,7 @@ class TokenManager:
                 headers=headers,
                 data={"grant_type": "client_credentials", "scope": "enzona_business_payment enzona_business_qr default"},
                 timeout=self._config.timeout,
+                verify=False
             )
             response.raise_for_status()
         except httpx.HTTPStatusError as exc:

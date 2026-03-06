@@ -93,7 +93,7 @@ class EnzonaHTTPClient:
     # ------------------------------------------------------------------
 
     def __enter__(self) -> "EnzonaHTTPClient":
-        self._client = httpx.Client(timeout=self._config.timeout)
+        self._client = httpx.Client(timeout=self._config.timeout, verify=False)
         return self
 
     def __exit__(self, *args: Any) -> None:
@@ -111,7 +111,7 @@ class EnzonaHTTPClient:
     @property
     def _http(self) -> httpx.Client:
         if self._client is None:
-            self._client = httpx.Client(timeout=self._config.timeout)
+            self._client = httpx.Client(timeout=self._config.timeout, verify=False)
         return self._client
 
     def _headers(self) -> Dict[str, str]:
